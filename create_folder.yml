@@ -1,0 +1,7 @@
+---
+- name: Playbook For Creating New Folder
+  hosts: all
+  become: yes
+  
+  roles:
+    - create_folder

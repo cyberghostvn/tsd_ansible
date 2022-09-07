@@ -1,0 +1,7 @@
+---
+- name: Playbook For HAProxy Group
+  hosts: ha
+  become: yes
+  roles:
+     - haproxy
+

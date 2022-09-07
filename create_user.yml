@@ -1,0 +1,7 @@
+---
+- name: Playbook For Creating New User
+  hosts: all
+  become: yes
+  
+  roles:
+    - create_user

@@ -1,0 +1,44 @@
+---
+- name: Create User "{{ user }}" On Ubuntu/Debian
+  user:
+    name: "{{ user }}"
+    password: "{{ pass }}"
+    shell: /bin/bash
+    groups: sudo,adm
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: SSH withough password
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: visudo -cf %s
+  when: ansible_distribution == "Ubuntu"
+
+- name: Create SSH Key For User
+  user:
+    name: "{{ user }}"
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+- name: Create authorized_keys File
+  file:
+    path: /home/{{ user }}/.ssh/authorized_keys
+    state: touch
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0600
+
+- name: Add SSH Public Key To Authorized_keys File
+  shell:
+    cmd: echo "{{ ssh_key }}" >> /home/{{ user }}/.ssh/authorized_keys
+
+#- name: Add SSH Public Key 
+  #  authorized_key:
+    #    user: deploy
+      #    state: present
+      #    key: "{{ lookup('file', '/home/deploy/.ssh/id_rsa.pub') }}"
+      #    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"

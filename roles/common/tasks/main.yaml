@@ -1,0 +1,36 @@
+---
+- name: Update All Packages (Ubuntu)
+  apt:
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Update All Packages (CentOS)
+  yum:
+    update_cache: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Upgrade OS (CentOS)
+  yum:
+    upgrade: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Upgrade OS (Ubuntu)
+  apt:
+    upgrade: dist
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install wget, net-tools, unzip (CentOS)
+  yum:
+    name:
+      - wget
+      - net-tools
+      - unzip
+  when: ansible_distribution == "CentOS"
+
+- name: Install wget, net-tools, unzip (Ubuntu)
+  apt:
+    name:
+      - wget
+      - net-tools
+      - unzip
+  when: ansible_distribution == "Ubuntu"

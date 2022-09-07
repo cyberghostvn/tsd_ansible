@@ -1,0 +1,17 @@
+---
+- name: Install HAProxy & Keepalived
+  apt:
+    name:
+      - haproxy
+      - keepalived
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Start HAProxy Service & Keepalived
+  systemd:
+    name: 
+      - haproxy
+      - keepalived
+    state: started
+    enabled: yes
+
