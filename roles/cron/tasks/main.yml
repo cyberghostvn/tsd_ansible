@@ -22,7 +22,7 @@
 - name: Create Job 2 for system
   cron:
     name: Run Script Backup To Local
-    minute: '*/1'
+    hour: '*/2'
     job: "bash /home/nghialv/cron_local.sh"
     user: nghialv
     state: present
