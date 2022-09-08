@@ -2,6 +2,6 @@
 - name: Create Folder For All Server
   file:
     path: '/backup_{{ ansible_hostname }}'
-    owner: deploy
-    group: deploy
+    owner: nghialv
+    group: nghialv
     state: directory
