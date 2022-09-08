@@ -1,6 +1,6 @@
 ---
 - name: Playbook For Creating New Folder
-  hosts: all
+  hosts: all:!backup
   become: yes
   
   roles:
