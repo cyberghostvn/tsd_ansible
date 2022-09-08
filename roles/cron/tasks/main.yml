@@ -1,0 +1,18 @@
+---
+- name: Create Job For All System Transfer To Remote
+  cron:
+    name: Backup To Remote
+    minute: 0
+    hour: 23
+    user: nghialv
+    job: "rsync /backup -aze ssh nghialv@10.0.6.4:/data"
+    state: present
+
+- name: Create Job For All System To Local
+  cron:
+    name: Backup Local
+    minute: '*/1'
+      #    hour: '*/2'
+    user: nghialv
+    job:
+      - "rsync /etc/ansible -az /backup/backup_{{ ansible_hostname}}_{{ ansible_date_time.date }}"
