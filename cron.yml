@@ -1,6 +1,7 @@
 ---
 - name: Playbook For All
-  hosts: mgmt
+  hosts: localhost
   become: yes
   roles:
      - cron
+
