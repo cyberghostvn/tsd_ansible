@@ -15,7 +15,7 @@
     name: Run Script Backup To Remote
     minute: '0'
     hour: '23'
-    job: "bash /home/nghialv/cron.sh"
+    job: "bash /home/nghialv/backup_remote.sh"
     user: nghialv
     state: present
 
@@ -23,6 +23,6 @@
   cron:
     name: Run Script Backup To Local
     hour: '*/2'
-    job: "bash /home/nghialv/cron_local.sh"
+    job: "bash /home/nghialv/backup_local.sh"
     user: nghialv
     state: present
