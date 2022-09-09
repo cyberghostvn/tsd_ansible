@@ -7,8 +7,8 @@
     group: nghialv
     mode: o=x
   with_items:
-    - cron.sh
-    - cron_local.sh
+    - backup_remote.sh
+    - backup_local.sh
 
 - name: Create Job for All system
   cron:
