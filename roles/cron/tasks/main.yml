@@ -10,7 +10,7 @@
     - backup_remote.sh
     - backup_local.sh
 
-- name: Create Job for All system
+- name: Create Job Backup 1 For All System
   cron:
     name: Run Script Backup To Remote
     minute: '0'
@@ -19,7 +19,7 @@
     user: nghialv
     state: present
 
-- name: Create Job 2 for system
+- name: Create Job Backup 2 For All System
   cron:
     name: Run Script Backup To Local
     minute: '0'
